@@ -1,0 +1,43 @@
+swagger: "2.0"
+info:
+  description: "BuggyList API."
+  title: "BuggyList API"
+  version: "1.0.0"
+host: "buggylist-187221.appspot.com"
+basePath: "/"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+schemes:
+- "https"
+paths:
+  "/popular/{section}/{since}":
+    get:
+      description: "Most popular articles."
+      operationId: "popular"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Popular"
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ArticleResponse'
+      parameters:
+      - in: path
+        name: section
+        type: string
+        required: true
+        description: Category filter.
+      - in: path
+        name: since
+        type: integer
+        required: true
+        description: Days since today.
+definitions:
+  ArticleResponse:
+    properties:
+      title:
+        type: string
